@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Patrick's Portfolio {% endblock %} {# title of page #}
+{% block meta_description %} Patrick Nyondo is going to be one of the wealthiest and most respected people in Malawi {% endblock %}
+{% block content %}
+
+  <!-- ***** Breadcrumb Area Start ***** -->
+  <div class="breadcumb-area bg-img bg-gradient-overlay" style="background-image: url({% static 'website/img/bg-img/12.jpg' %});">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <h2 class="title">Portfolio</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="breadcumb--con">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{ url 'home' }"><i class="fa fa-home"></i> Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Portfolio</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Breadcrumb Area End ***** -->
+
+  <!-- ***** Blog Area Start ***** -->
+  <section class="dento-blog-area section-padding-100-0 clearfix">
+    <div class="container">
+      <div class="row">
+        <!-- Section Heading -->
+        <div class="col-12">
+          <div class="section-heading text-center">
+            <h2>My Projects</h2>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Single Blog Item -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="single-blog-item mb-100">
+            <a href="{% url 'blog_details' %}">
+              <img src="{% static 'website/img/bg-img/4.png' %}" alt="">
+            </a>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="{% url 'blog_details' %}" class="post-title">Scraping the Malawi Stock Exchange website</a>
+              <p>Coming soon...</p>
+              <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt"></i> 28 Sep 2020</a>
+                {# <a href="#"><i class="icon_chat_alt"></i> Comments</a> #}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Blog Item -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="single-blog-item mb-100">
+            <a href="{% url 'blog_details' %}">
+              <img src="{% static 'website/img/bg-img/5.jpeg' %}" alt="">
+            </a>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="{% url 'blog_details' %}" class="post-title">Best Python libraries?</a>
+              <p>Coming soon... </p>
+              <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt"></i> 28 Sep 2020</a>
+                {# <a href="#"><i class="icon_chat_alt"></i> Comments</a> #}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Blog Item -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="single-blog-item mb-100">
+            <a href="{% url 'blog_details' %}">
+              <img src="{% static 'website/img/bg-img/6.jpg' %}" alt="">
+            </a>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="{% url 'blog_details' %}" class="post-title">Python Fraud detection use case</a>
+              <p>Coming soon ...</p>
+              <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt"></i> 28 Sep 2020</a>
+                {# <a href="#"><i class="icon_chat_alt"></i> Comments</a> #}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Blog Item -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="single-blog-item mb-100">
+            <a href="{% url 'blog_details' %}">
+              <img src="{% static 'website/img/bg-img/6.jpg' %}" alt="">
+            </a>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="{% url 'blog_details' %}" class="post-title">Computer vision</a>
+              <p>Coming soon ...</p>
+              <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt"></i> 28 Sep 2020</a>
+                {# <a href="#"><i class="icon_chat_alt"></i> Comments</a> #}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Blog Item -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="single-blog-item mb-100">
+            <a href="{% url 'blog_details' %}">
+              <img src="{% static 'website/img/bg-img/7.png' %}" alt="">
+            </a>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="{% url 'blog_details' %}" class="post-title">Building my Portfolio website</a>
+              <p>Coming soon ...</p>
+              <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt"></i> 28 Sep 2020</a>
+                {# <a href="#"><i class="icon_chat_alt"></i> Comments</a> #}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ***** Blog Area End ***** -->
+
+{% endblock %}

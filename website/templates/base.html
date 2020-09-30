@@ -1,0 +1,267 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="{% block meta_description %} Welsome to the website of Patrick Nyondo {% endblock %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  <title>{% block title %}Patrick Nyondo{% endblock %}</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'website/img/core-img/favicon.ico' %}">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preload-content">
+      <div id="dento-load"></div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area">
+    <!-- Top Header Area -->
+    <div class="top-header-area">
+      <div class="container h-100">
+        <div class="row h-100 align-items-center">
+          <!-- Top Content -->
+          <div class="col-6 col-md-9 col-lg-8">
+            <div class="top-header-content">
+              <a href="#" data-toggle="tooltip" data-placement="bottom" title="Lilongwe, Malawi"><i class="fa fa-map-marker"></i> <span>Lilongwe, Malawi</span></a>
+              <a href="#" data-toggle="tooltip" data-placement="bottom" title="patrickrw@hotmail.com"><i class="fa fa-envelope"></i> <span>patrickrw@hotmail.com</span></a>
+            </div>
+          </div>
+          <!-- Top Header Social Info -->
+          <div class="col-6 col-md-3 col-lg-4">
+            <div class="top-header-social-info text-right">
+              <a href="https://www.facebook.com/patrickrw.nyondo" class="fa fa-facebook"></a>
+              {# <a href="https://twitter.com/patrick_rw" class="fa fa-twitter"></a> #}
+              <a href="https://www.linkedin.com/in/patrick-rw-nyondo-52791352/" class="fa fa-linkedin"></a>
+              <a href="https://github.com/Patrickrw1" class="fa fa-github"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Top Header End -->
+
+    <!-- Main Header Start -->
+    <div class="main-header-area">
+      <div class="classy-nav-container breakpoint-off">
+        <div class="container">
+          <!-- Classy Menu -->
+          <nav class="classy-navbar justify-content-between" id="dentoNav">
+
+            <!-- Logo -->
+            <a class="nav-brand" href="{% url 'home' %}"><img src="{% static 'website/img/core-img/logo.png' %}" alt=""></a>
+
+            <!-- Navbar Toggler -->
+            <div class="classy-navbar-toggler">
+              <span class="navbarToggler"><span></span><span></span><span></span></span>
+            </div>
+
+            <!-- Menu -->
+            <div class="classy-menu">
+
+              <!-- Close Button -->
+              <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+              </div>
+
+              <!-- Nav Start -->
+              <div class="classynav">
+                <ul id="nav">
+                  <li><a href="{% url 'home' %}">Home</a></li>
+                  {% comment %}
+                  <li><a href="#">Pages</a>
+                    <ul class="dropdown">
+                      <li><a href="{% url 'home' %}">- Home</a></li>
+                      <li><a href="about.html">- About</a></li>
+                      <li><a href="portfolio.html">- Portfolio</a></li>
+                      <li><a href="pricing.html">- Data</a></li>
+                      <li><a href="blog.html">- Blog</a></li>
+                      <li><a href="blog_details.html">- Blog Details</a></li>
+                      <li><a href="contact.html">- Contact</a></li>
+                      <li><a href="#">- Dropdown</a>
+                        <ul class="dropdown">
+                          <li><a href="#">- Dropdown Item</a></li>
+                          <li><a href="#">- Dropdown Item</a>
+                            <ul class="dropdown">
+                              <li><a href="#">- Even Dropdown</a></li>
+                              <li><a href="#">- Even Dropdown</a></li>
+                              <li><a href="#">- Even Dropdown</a></li>
+                              <li><a href="#">- Even Dropdown</a></li>
+                            </ul>
+                          </li>
+                          <li><a href="#">- Dropdown Item</a></li>
+                          <li><a href="#">- Dropdown Item</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  {% endcomment %}
+                  <li><a href="{% url 'about' %}">About</a></li>
+                  <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+                  {# <li><a href="pricing.html">Data</a></li> #}
+                  <li><a href="#">Blog</a>
+                    <ul class="dropdown">
+                      {# <li><a href="{% url 'blog' %}">- Blog</a></li> #}
+                      <li><a href="{% url 'blog_details' %}">- Blog Details</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="./contact.html">Contact</a></li>
+                </ul>
+              </div>
+              <!-- Nav End -->
+            </div>
+
+            <!-- Booking Now Button -->
+            <a href="{% url 'contact' %}" class="btn dento-btn booking-btn">SUBSCRIBE</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+
+
+
+{% block content %}  
+
+{% endblock %}
+
+
+
+
+<!-- ***** Footer Area Start ***** -->
+<footer class="footer-area bg-img bg-gradient-overlay" style="background-image: url({% static 'website/img/bg-img/3.jpg' %});">
+    <div class="container">
+      <div class="row">
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="single-footer-widget">
+            <a href="./home.html" class="d-block mb-4"><img src="{% static 'website/img/core-img/logo2.png' %}" alt=""></a>
+            <p>Python solutions to Finance and Data Science problems.</p>
+            <div class="footer-contact">
+              <p><i class="icon_pin"></i> Lilongwe, Malawi</p>
+              <p><i class="icon_phone"></i> +265 991 92 85 02</p>
+              <p><i class="icon_mail"></i> patrickrw@hotmail.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Footer Widget -->
+      {% comment %}
+        <div class="col-12 col-sm-6 col-lg">
+          <div class="single-footer-widget">
+            <!-- Widget Title -->
+            <h5 class="widget-title">Opening Hours</h5>
+
+            <!-- Opening Hours -->
+            <ul class="opening-hours">
+              <li><span>Mon-Wed</span> <span>8.00-18.00</span></li>
+              <li><span>Thu-Fri</span> <span>8.00-17.00</span></li>
+              <li><span>Sat</span> <span>9.00-17.00</span></li>
+              <li><span>Sun</span> <span>10.00-17.00</span></li>
+              <li><span>Holiday</span> <span>Closed</span></li>
+            </ul>
+          </div>
+        </div>
+      {% endcomment %}  
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-sm-6 col-lg">
+          <div class="single-footer-widget">
+            <!-- Widget Title -->
+            <h5 class="widget-title">Quick Link</h5>
+
+            <!-- Quick Links Nav -->
+            <nav>
+              <ul class="quick-links">
+                <li><a href="{% url 'about' %}">About</a></li>
+                {# <li><a href="#">FAQs</a></li> #}
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+
+                {% comment %}
+                <li><a href="#">Policy</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Advisors</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Dentist</a></li>
+                {% endcomment %}
+                
+                <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+                {# <li><a href="#">Legals</a></li> #}
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-sm-6 col-lg">
+          <div class="single-footer-widget">
+            <!-- Widget Title -->
+            <h5 class="widget-title">Newsletter</h5>
+
+            <p>A weekly Newsletter will be sent to you. Stay updated with current news on Finance and Data Science</p>            
+            <!-- Newsletter Form -->
+            <div class="footer-newsletter-form">
+              <form action="#" method="post">
+                {% csrf_token %}
+                <input type="email" disabled = "true" name="nl-email" value="" placeholder="Email Address">
+                <button type="submit" disabled = "true"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+              </form>
+            </div>
+
+            <!-- Social Info -->
+            <div class="footer-social-info">
+              <a href="https://www.facebook.com/patrickrw.nyondo" class="fa fa-facebook"></a>
+              {# <a href="https://twitter.com/patrick_rw" class="fa fa-twitter"></a> #}
+              <a href="https://www.linkedin.com/in/patrick-rw-nyondo-52791352/" class="fa fa-linkedin"></a>
+              <a href="https://github.com/Patrickrw1" class="fa fa-github"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copywrite Area -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="copywrite-content">
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script></a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- ***** Footer Area End ***** -->
+
+  <!-- ******* All JS ******* -->
+  <!-- jQuery js --> 
+  <script src="{% static 'website/js/jquery.min.js' %}"></script>
+  <!-- Popper js -->
+  <script src="{% static 'website/js/popper.min.js' %}"></script>
+  <!-- Bootstrap js -->
+  <script src="{% static 'website/js/bootstrap.min.js' %}"></script>
+  <!-- All js -->
+  <script src="{% static 'website/js/dento.bundle.js' %}"></script>
+  <!-- Active js -->
+  <script src="{% static 'website/js/default-assets/active.js' %}"></script>
+
+</body>
+
+</html>
