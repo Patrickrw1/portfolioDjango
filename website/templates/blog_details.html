@@ -44,8 +44,96 @@
               <a href="#"><i class="icon_clock_alt"></i> 28 Sep 2018</a>
               {# <a href="#"><i class="icon_chat_alt"></i> 3 Comments</a> #}
             </div>
-            <p>First paragraph</p>
-            <p>Second paragraph</p>
+            <p>Web scraping was one of the first little projects I did after a few months trying to figure out how I can progress in my coding journey. There are many use cases of web scraping, but the only reason I was interested in it was to retrieve daily stock data from Malawi Stock Exchange. 
+               This data can the be manipulated further. Let's get started with web scraping in Python. 
+               <mark>
+                import pandas as pd
+                import requests
+                import datetime
+                import lxml.html as lh
+                import time
+               </mark>
+               We're going to import pandas to visualise our dataframe and the requests module will interact with MSE website. In order to manipulate the resulting dataframe we'll need to turn the dates to datetime index.
+               The lxml module will parse through the 'tr' tags and help retrieve elements. It is important to to set 'time' so as to not slow down th website with our requests. The script will sleep after a set time</p>
+            <p>The following code renders the MSE website and saves the content in 'doc'. The data we want is within the 'tr' tags which will be saved in 'tr_elements', you can view this by right clicking anywhere on the site and choosing 'inspect' on the dropdown.
+               <mark>
+                url = 'https://mse.co.mw/index.php?route=market/statistics/today'
+                response = requests.get(url, headers={"User-Agent": "XY"})
+                doc = lh.fromstring(response.content)
+                tr_elements = doc.xpath('//tr')
+               </mark>        
+            </p>
+            <p>
+              We want to retrieve the headers in the table and create an empty list. 
+              <mark>
+                col=[]
+                i=0
+                for t in tr_elements[0]:
+                  i+=1
+                  name=t.text_content()
+                  print ('%d:"%s"'%(i,name))
+                  col.append((name,[]))
+              </mark>
+            </p>
+            <p>
+              Our first row is the header, this means data will be stored from 2nd row ownwards. The size of 'tr_elements' has to be equal to 6 in our case (len(tr_elements)), this will tell us if we are retrieving data from our table.
+              <mark>
+                for j in range(1,len(tr_elements)):
+                    #T is our j'th row
+                    T=tr_elements[j]
+     
+                    if len(T)!=6:
+                        break
+    
+                    #i is the index of our column
+                    i=0
+    
+                    for t in T.iterchildren():
+                        data=t.text_content() 
+                        #Check if row is empty
+                        if i>0:
+                        #Convert any numerical value to integers
+                            try:
+                                data=int(data)
+                            except:
+                                pass
+                        #Append the data to the empty list of the i'th column
+                        col[i][1].append(data)
+                        #Increment i for the next column
+                        i+=1
+        
+                time.sleep(1)
+              </mark>
+              The code will iterate through each element of the row and convert any numerical values to integers. It'll then append the data to the empty list whose index is incrementend by 1.
+              Our script will sleep for a few seconds so as not to slow down the MSE site or be flagged by the system.
+            </p>
+            <p>
+              We have to create a data frame and pass on values from (col[]). This will be achieved using a dictionary.
+              <mark>
+                Dict={title:column for (title,column) in col}
+                df=pd.DataFrame(Dict)
+                df
+              </mark>
+            </p>
+            <p>
+              A dataframe containing stock data is easy to manipulate if the 'Price Date' column is in the format of Datetime index.
+              <mark>
+                for step in range(0, 14):
+                    time_stamp = datetime.datetime.now()
+                    time_stamp = time_stamp.strftime('%Y-%m-%d-%H-%M-%S')
+
+                    df['Price Date'] = time_stamp
+              </mark>
+            </p>
+            <p>
+              We are almost done, the last step is to save the resulting dataframe to csv file.
+              <mark>
+                df.to_csv(r'mse_data.csv', index=False)
+                mse = pd.read_csv(r'mse_data.csv') # retrieve the saved dataframe and save it to 'mse'
+                mse # view the dataframe
+              </mark>
+            </p>
+            <p>The dataframe saved as 'mse' can then be manipulated and each time the script is loaded the dataframe is updated automaticaly with new prices.</p>
             <blockquote cite="" class="dento-blockquote d-flex">
               <div class="icon">
                 <i class="fa fa-quote-left"></i>
