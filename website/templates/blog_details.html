@@ -47,70 +47,71 @@
             <p>Web scraping was one of the first little projects I did after a few months trying to figure out how I can progress in my coding journey. There are many use cases of web scraping, but the only reason I was interested in it was to retrieve daily stock data from Malawi Stock Exchange. 
                This data can then be manipulated further. Let's get started with web scraping in Python. 
                <mark>
-                 <li>
-                import pandas as pd
-                import requests
-                import datetime
-                import lxml.html as lh
-                import time
-                 </li>
+                 <ol>
+                <li>import pandas as pd</li>
+                <li>import requests</li>
+                <li>import datetime</li>
+                <li>import lxml.html as lh</li>
+                <li>import time</li>
+                 </ol>
                </mark>
                We're going to import pandas to visualise our dataframe and the requests module will interact with MSE website. In order to manipulate the resulting dataframe we'll need to turn the dates to datetime index.
                The lxml module will parse through the 'tr' tags and help retrieve elements. It is important to to set 'time' so as to not slow down th website with our requests. The script will sleep after a set time</p>
-            <p>The following code renders the MSE website and saves the content in 'doc'. The data we want is within the 'tr' tags which will be saved in 'tr_elements', you can view this by right clicking anywhere on the site and choosing 'inspect' on the dropdown.
+            </p> 
+               <p>The following code renders the MSE website and saves the content in 'doc'. The data we want is within the 'tr' tags which will be saved in 'tr_elements', you can view this by right clicking anywhere on the site and choosing 'inspect' on the dropdown.
                <mark>
-                 <li>
-                url = 'https://mse.co.mw/index.php?route=market/statistics/today'
-                response = requests.get(url, headers={"User-Agent": "XY"})
-                doc = lh.fromstring(response.content)
-                tr_elements = doc.xpath('//tr')
-                 </li>
+                 <ol>
+                <li>url = 'https://mse.co.mw/index.php?route=market/statistics/today'</li>
+                <li>response = requests.get(url, headers={"User-Agent": "XY"})</li>
+                <li>doc = lh.fromstring(response.content)</li>
+                <li>tr_elements = doc.xpath('//tr')</li>
+                 </ol>
                </mark>        
             </p>
             <p>
               We want to retrieve the headers in the table and create an empty list. 
               <mark>
-                <li>
-                col=[]
-                i=0
-                for t in tr_elements[0]:
-                  i+=1
-                  name=t.text_content()
-                  print ('%d:"%s"'%(i,name))
-                  col.append((name,[]))
-                </li>
+                <ol>
+                <li>col=[]</li>
+                <li>i=0</li>
+                <li>for t in tr_elements[0]:</li>
+                  <li>i+=1</li>
+                  <li>name=t.text_content()</li>
+                  <li>print ('%d:"%s"'%(i,name))</li>
+                  <li>col.append((name,[]))</li>
+                </ol>
               </mark>
             </p>
             <p>
               Our first row is the header, this means data will be stored from 2nd row ownwards. The size of 'tr_elements' has to be equal to 6 in our case (len(tr_elements)), this will tell us if we are retrieving data from our table.
               <mark>
-                <li>
-                for j in range(1,len(tr_elements)):
-                    #T is our j'th row
-                    T=tr_elements[j]
+                <ol>
+                <li>for j in range(1,len(tr_elements)):</li>
+                <li>#T is our j'th row</li>
+                <li>T=tr_elements[j]</li>
      
-                    if len(T)!=6:
-                        break
+                <li>if len(T)!=6:</li>
+                        <li>break</li>
     
-                    #i is the index of our column
-                    i=0
+                    <li>#i is the index of our column</li>
+                    <li>i=0</li>
     
-                    for t in T.iterchildren():
-                        data=t.text_content() 
-                        #Check if row is empty
-                        if i>0:
-                        #Convert any numerical value to integers
-                            try:
-                                data=int(data)
-                            except:
-                                pass
-                        #Append the data to the empty list of the i'th column
-                        col[i][1].append(data)
-                        #Increment i for the next column
-                        i+=1
+                    <li>for t in T.iterchildren():</li>
+                    <li>data=t.text_content() </li>
+                    <li>#Check if row is empty</li>
+                    <li>if i>0:</li>
+                    <li>#Convert any numerical value to integers</li>
+                            <li>try:</li>
+                            <li>data=int(data)</li>
+                            <li>except:</li>
+                            <li>pass</li>
+                        <li>#Append the data to the empty list of the i'th column</li>
+                        <li>col[i][1].append(data)</li>
+                        <li>#Increment i for the next column</li>
+                        <li>i+=1</li>
         
-                time.sleep(1)
-                </li>
+                <li>time.sleep(1)</li>
+                </ol>
               </mark>
               The code will iterate through each element of the row and convert any numerical values to integers. It'll then append the data to the empty list whose index is incrementend by 1.
               Our script will sleep for a few seconds so as not to slow down the MSE site or be flagged by the system.
@@ -118,33 +119,33 @@
             <p>
               We have to create a data frame and pass on values from (col[]). This will be achieved using a dictionary.
               <mark>
-                <li>
-                Dict={title:column for (title,column) in col}
-                df=pd.DataFrame(Dict)
-                df
-                </li>
+                <ol>
+                <li>Dict={title:column for (title,column) in col}</li>
+                <li>df=pd.DataFrame(Dict)</li>
+                <li>df</li>
+                </ol>
               </mark>
             </p>
             <p>
               A dataframe containing stock data is easy to manipulate if the 'Price Date' column is in the format of Datetime index.
               <mark>
-                <li>
-                for step in range(0, 14):
-                    time_stamp = datetime.datetime.now()
-                    time_stamp = time_stamp.strftime('%Y-%m-%d-%H-%M-%S')
+                <ol>
+                <li>for step in range(0, 14):</li>
+                <li>time_stamp = datetime.datetime.now()</li>
+                <li>time_stamp = time_stamp.strftime('%Y-%m-%d-%H-%M-%S')</li>
 
-                    df['Price Date'] = time_stamp
-                </li>
+                <li>df['Price Date'] = time_stamp</li>
+                </ol>
               </mark>
             </p>
             <p>
               We are almost done, the last step is to save the resulting dataframe to csv file.
               <mark>
-                <li>
-                df.to_csv(r'mse_data.csv', index=False)
-                mse = pd.read_csv(r'mse_data.csv') # retrieve the saved dataframe and save it to 'mse'
-                mse # view the dataframe
-                </li>
+                <ol>
+                <li>df.to_csv(r'mse_data.csv', index=False)</li>
+                <li>mse = pd.read_csv(r'mse_data.csv') # retrieve the saved dataframe and save it to 'mse'</li>
+                <li>mse # view the dataframe</li>
+                </ol>
               </mark>
             </p>
             <p>The dataframe saved as 'mse' can then be manipulated and each time the script is loaded the dataframe is updated automaticaly with new prices.</p>
